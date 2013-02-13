@@ -8,7 +8,7 @@ service "nginx" do
   supports :restart => true
 end
 
-if ['app_master', 'app', 'solo'].include?(node[:role])
+if ['app_master', 'app', 'solo'].include?(node[:instance_role])
   node[:applications].each do |app_name, data|
     template "/data/#{app_name}/shared/config/env.custom" do
       source "env.custom.erb"
